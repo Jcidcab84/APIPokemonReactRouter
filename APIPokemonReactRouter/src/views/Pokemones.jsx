@@ -12,8 +12,8 @@ export const Pokemones = () => {
 
   const consultar = async () => {
     try {
-      const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-      const info = await respuesta.json();
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      const info = await res.json();
       setData(info);
     } catch {}
     return;

@@ -14,19 +14,19 @@ export const Home = () => {
 
     const consultar = async () => {
         try{
-            const respuesta = await fetch ("https://pokeapi.co/api/v2/pokemon?offset=20&limit=100");
-            const info = await respuesta.json();
+            const res= await fetch ("https://pokeapi.co/api/v2/pokemon?offset=20&limit=30");
+            const info = await res.json();
             setData(info.results)
         }catch {
         }
         return;
     }
 
-    const verCaracteristicas = (e) => {
-      setValor(e.target.value)
+    const verCaracteristicas = (event) => {
+      setValor(event.target.value)
     }
-    const mostrar = (e) => {
-       e.preventDefault();
+    const mostrar = (event) => {
+       event.preventDefault();
        navigate(`/pokemones/${valor}`);
 
     }
@@ -34,13 +34,13 @@ export const Home = () => {
 
   return (
     <section className='home'>
-      <h1>Selecciona un Pokemon</h1>
+      <h1 className='mt-4 mb-4'>Selecciona un Pokemon</h1>
       <form className='column'>
         <select name="pokemonApi" id="pokemones" onChange={verCaracteristicas}>
           <option value="">-Pokemones-</option>
-          {data.map((x,i)=>(<option key={x.name} value={x.name}>{x.name}</option>))}
+          {data.map((x)=>(<option key={x.name} value={x.name}>{x.name}</option>))}
         </select>
-        <input type="submit" value="Ir al pokemon" onClick={(e)=>mostrar(e)}/>
+        <input type="submit" value="Ir al pokemon" onClick={(event)=>mostrar(event)}/>
       </form>
     </section>
   );
